@@ -15,3 +15,12 @@ If we know:
 - diagonal = largest square ending at (i-1, j-1)
 
 Then the largest square ending at (i,j) is min(left, top, diagonal) + 1
+Why This Algorithm Works
+The Dynamic Programming approach is brilliant because:
+
+Bottom-up: We build solutions from smaller subproblems
+Optimal substructure: The largest square at (i,j) depends on the largest squares at neighboring positions
+No redundant work: We compute each dp[i][j] exactly once
+Time complexity: O(rows × cols) - we visit each cell once
+Space complexity: O(rows × cols) for the DP table
+This is a classic example of how DP can solve what seems like a complex problem very efficiently!
