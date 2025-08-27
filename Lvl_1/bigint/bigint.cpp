@@ -136,7 +136,7 @@
 
 	// Bit shift operators
 	// x << n: Returns new shifted number
-    bigint bigint:: operator<<(int shift) const
+    bigint bigint:: operator<<(unsigned int shift) const
 	{
 		bigint result;
 		result.data = this->data;
@@ -145,13 +145,13 @@
 		return result;
 	}
 	// x <<= n: Modifies and returns *this
-	bigint& bigint:: operator<<=(int shift)
+	bigint& bigint:: operator<<=(unsigned int shift)
 	{
 		*this = (*this << shift);
 		return *this;
 	}
 
-	bigint bigint::operator>>(int shift) const
+	bigint bigint::operator>>(unsigned int shift) const
 	{
 		bigint result;
 		result.data = this->data;
@@ -168,29 +168,21 @@
 
 		return result;
 	}
-	bigint& bigint:: operator>>=(int shift)
+	bigint& bigint:: operator>>=(unsigned int shift)
 	{
 		*this = (*this >> shift);
 		return *this;
 	}
 
-	bigint bigint:: operator<<(bigint shift) const    // x << n: Returns new shifted number
+	bigint bigint:: operator<<(const bigint shift) const    // x << n: Returns new shifted number
 	{
 		bigint result;
 		result.data = this->data;
-		std::string zeros;
-		int i = shift.data.length();
-		while(i > 0)
-		{
-			int j = shift.data[i - 1] - '0';
-			while (j > 0)
-			{
-				zeros += "0";
-				j--;
-			}
-			i--;
-		}
-		result.data += zeros;
+		unsigned long long tmp;
+
+		std::stringstream conv(shift.data);
+		conv >> tmp;
+		result <<= tmp;
 		return result;
 	}
     bigint& bigint:: operator<<=(const bigint shift)       // x <<= n: Modifies and returns *this
@@ -204,18 +196,11 @@
 	{
 		bigint result;
 		result.data = this->data;
-		int i = shift.data.length();
-		while(i > 0)
-		{
-			int j = shift.data[i - 1] - '0';
-			if (j >= result.data.length())
-			{
-				result.data = "0";
-				return result;
-			}
-			result.data = result.data.substr(0, result.data.length() - j); 
-			i--;
-		}
+		unsigned long long tmp;
+
+		std::stringstream conv(shift.data);
+		conv >> tmp;
+		result >>= tmp;
 		return result;
 	}
 

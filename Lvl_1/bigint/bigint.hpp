@@ -3,6 +3,8 @@
 
 #include <iostream>
 #include <string>
+#include <cmath>
+#include <sstream>
 
 class bigint 
 {
@@ -29,10 +31,10 @@ public:
 	bool operator >= (const bigint &other) const;
 
 	// Bit shift operators
-    bigint operator<<(int shift) const;    // x << n: Returns new shifted number
-    bigint& operator<<=(int shift);        // x <<= n: Modifies and returns *this
-    bigint operator>>(int shift) const;    // x >> n: Returns new shifted number
-    bigint& operator>>=(int shift);        // x >>= n: Modifies and returns *this
+    bigint operator<<(unsigned int shift) const;    // x << n: Returns new shifted number
+    bigint& operator<<=(unsigned int shift);        // x <<= n: Modifies and returns *this
+    bigint operator>>(unsigned int shift) const;    // x >> n: Returns new shifted number
+    bigint& operator>>=(unsigned int shift);        // x >>= n: Modifies and returns *this
 
 	bigint operator<<(bigint shift) const;    // x << n: Returns new shifted number
     bigint& operator<<=(bigint shift);        // x <<= n: Modifies and returns *this
